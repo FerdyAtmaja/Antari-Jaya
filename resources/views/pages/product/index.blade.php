@@ -21,9 +21,9 @@
                   <tr>
                     <th style="width: 5%">No</th>
                     <th style="width: 35%">Nama Produk</th>
-                    <th style="width: 20%">Kategori</th>
-                    <th style="width: 20%">Stok</th>
-                    <th style="width: 20%">Harga</th>
+                    {{-- <th style="width: 20%">Kategori</th> --}}
+                    <th style="width: 30%">Stok</th>
+                    <th style="width: 30%">Harga</th>
                     <th style="width: 10%">Actions</th>
                   </tr>
                 </thead>
@@ -38,9 +38,9 @@
                     <td>{{ $data->category->name }}</td>
                     <td><span class="badge bg-label-primary me-1">{{ $data->stock }}</span></td>
                     <td>{{ $data->price }}</td>
-                    <td>
+                    {{-- <td>
                           <img src="{{ asset('store/photo/' . $data->photo) }}" alt="Avatar" class="rounded-circle w-20" />
-                    </td>
+                    </td> --}}
                     <td>
                       <div class="dropdown">
                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -91,7 +91,7 @@
                         </div>
                       </div>
                       <div class="row g-2 mb-2">
-                        <div class="col mb-0">
+                        {{-- <div class="col mb-0">
                           <label for="emailExLarge" class="form-label">Kategori</label>
                           <select name="id_category" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
                             <option selected>--- Pilih Kategori ---</option>
@@ -99,7 +99,7 @@
                             <option value="{{ $data->id_category }}">{{ $data->name }}</option>
                             @endforeach
                           </select>
-                        </div>
+                        </div> --}}
                         <div class="col mb-0">
                           <label for="dobExLarge" class="form-label">Stok</label>
                           <input type="text" name="stock" id="nameExLarge" class="form-control" placeholder="Masukan Stok Produk"/>
@@ -110,20 +110,20 @@
                           <label for="emailExLarge" class="form-label">Harga</label>
                           <input type="text" name="price" id="nameExLarge" class="form-control" placeholder="Masukan Harga Produk" />
                         </div>
-                        <div class="col mb-0">
+                        {{-- <div class="col mb-0">
                           <label for="dobExLarge" class="form-label">Photo</label>
                           <div class="input-group">
                             <label class="input-group-text" for="inputGroupFile01">Upload</label>
                             <input type="file" name="photo" class="form-control" id="inputGroupFile01" />
                           </div>
-                        </div>
+                        </div> --}}
                       </div>
-                      <div class="row">
+                      {{-- <div class="row">
                         <div class="col mb-3">
                           <label for="nameExLarge" class="form-label">Deskripsi</label>
                           <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
-                      </div>
+                      </div> --}}
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -191,20 +191,20 @@
                           <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{ $data->description }}</textarea>
                         </div>
 
-                        <div class="col mb-0">
+                        {{-- <div class="col mb-0">
                           <label for="emailExLarge" class="form-label">Kategori</label>
                           <select name="id_category" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
                             <option selected>--- Pilih Kategori ---</option>
-                            @foreach ($category as $data)
-                            <option value="{{ $data->id_category }}"
-                                @if (old('id_category', $data->id_category) == $data->id_category)
-                                    selected
-                                @endif>
-                                {{ $data->name }}
-                            </option>
-                        @endforeach
+                              @foreach ($category as $data)
+                                <option value="{{ $data->id_category }}"
+                                    @if (old('id_category', $data->id_category) == $data->id_category)
+                                        selected
+                                    @endif>
+                                    {{ $data->name }}
+                                </option>
+                              @endforeach
                           </select>
-                        </div>
+                        </div> --}}
                       </div>
                 </div>
                 <div class="modal-footer">

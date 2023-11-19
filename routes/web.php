@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DashboardAdminController;
-
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +16,15 @@ use App\Http\Controllers\DashboardAdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 
-Route::get('/test', function () {
-    return view('layouts.dashboard');
-});
-
-Route::get('/dashboard', [DashboardAdminController::class, 'index'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::resource('product', ProductController::class);
+Route::resource('product-in', ProductInController::class);
+Route::resource('product-out', ProductOutController::class);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

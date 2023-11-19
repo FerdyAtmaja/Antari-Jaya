@@ -28,46 +28,48 @@
           <div data-i18n="Email">Dashboard</div>
         </a>
       </li>
-      {{-- <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+      <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
         <a
           href="{{ route('product.index') }}"
-          class="menu-link">
-          <i class="menu-icon bx bxs-package"></i>
-          <div data-i18n="Chat">Produk</div>
+          class="menu-link ">
+          <i class="menu-icon tf-icons bx bxs-package"></i>
+          <div data-i18n="Email">Product</div>
         </a>
       </li>
-      <li class="menu-item {{ request()->is('category*') ? 'active' : '' }}">
+      <li class="menu-item {{ request()->is('dashboard*') ? 'active' : '' }}">
         <a
-          href="{{ route('category.index') }}"
-          class="menu-link">
-          <i class='menu-icon bx bxs-category'></i>
-          <div data-i18n="Calendar">Kategori Produk</div>
+          href="{{ route('dashboard') }}"
+          class="menu-link ">
+          <i class="menu-icon tf-icons bx bxs-archive-in"></i>
+          <div data-i18n="Email">Product Masuk</div>
         </a>
       </li>
-      <li class="menu-item {{ request()->is('guest-book*') ? 'active' : '' }}">
+      <li class="menu-item {{ request()->is('dashboard*') ? 'active' : '' }}">
         <a
-          href="{{ route('guest-book.index') }}"
-          class="menu-link">
-          <i class='menu-icon bx bxs-book-content'></i>
-          <div data-i18n="Kanban">Feedback</div>
+          href="{{ route('dashboard') }}"
+          class="menu-link ">
+          <i class="menu-icon tf-icons bx bxs-archive-out"></i>
+          <div data-i18n="Email">Product Keluar</div>
         </a>
       </li>
-      <li class="menu-item {{ request()->is('customer*') ? 'active' : '' }}">
+      <li class="menu-item {{ request()->is('report*') ? 'active' : '' }}">
         <a
-          href="{{ route('customer.index') }}"
-          class="menu-link">
-          <i class='menu-icon bx bx-user'></i>
-          <div data-i18n="Kanban">Customer</div>
+          href="{{ route('dashboard') }}"
+          class="menu-link ">
+          <i class="menu-icon tf-icons bx bx-trending-up"></i>
+          {{-- <i class="menu-icon tf-icons bx bxs-badge-dollar"></i>
+          <i class="menu-icon tf-icons bx bxs-bar-chart-alt-2"></i> --}}
+          <div data-i18n="Email">Report</div>
         </a>
       </li>
-      <li class="menu-item {{ request()->is('shipping-order*') ? 'active' : '' }}">
+      <li class="menu-item {{ request()->is('manage-user*') ? 'active' : '' }}">
         <a
-          href="{{ route('shipping-order.index') }}"
-          class="menu-link">
-          <i class='menu-icon bx bxs-cart-download'></i>
-          <div data-i18n="Kanban">Shipping Orders</div>
+          href="{{ route('dashboard') }}"
+          class="menu-link ">
+          <i class="menu-icon tf-icons bx bxs-user"></i>
+          <div data-i18n="Email">Manage User</div>
         </a>
-      </li> --}}
+      </li>
     </ul>
   </aside>
   <!-- / Menu -->

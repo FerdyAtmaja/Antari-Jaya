@@ -2,23 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-
-class DashboardAdminController extends Controller
+class ProductOutController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // $totalPenjualan = Order::sum('total_amount');
-        // $totalPenjualanTerbaru = Order::orderBy('date_order', 'desc')->first()->total_amount;
-        // $customer = User::where('id_role', 2)->count();
-        // $customerTerbaru = User::where('id_role', 2)->orderBy('created_at', 'desc')->first()->name;
-        return view('pages.dashboard.index');
+        //
     }
 
     /**

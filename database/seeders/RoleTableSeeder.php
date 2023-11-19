@@ -17,13 +17,19 @@ class RoleTableSeeder extends Seeder
         $rolesRecords = [
             [
                 'id_role' => 1,
-                'name' => 'Admin',
+                'nama' => 'Super User',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'id_role' => 2,
-                'name' => 'Customer',
+                'nama' => 'Eksekutif',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id_role' => 3,
+                'nama' => 'Manajemen Gudang',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]
