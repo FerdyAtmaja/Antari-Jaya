@@ -37,7 +37,7 @@ use App\Models\Order;
                       class="rounded" />
                   </div>
                 </div>
-            <span>Jumlah Customer</span>
+            <span>Jumlah</span>
                 {{-- <h3 class="card-title text-nowrap mb-1">{{ User::where('id_role', 2)->count() }}</h3> --}}
                 <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i></small>
               </div>

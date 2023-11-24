@@ -34,10 +34,10 @@
                     <td>
                       <span class="fw-medium">{{ $no++ }}</span>
                     </td>
-                    <td>{{ $data->name }}</td>
-                    <td>{{ $data->category->name }}</td>
-                    <td><span class="badge bg-label-primary me-1">{{ $data->stock }}</span></td>
-                    <td>{{ $data->price }}</td>
+                    <td>{{ $data->nama_produk }}</td>
+                    {{-- <td>{{ $data->category->name }}</td> --}}
+                    <td><span class="badge bg-label-primary me-1">{{ $data->stok }}</span></td>
+                    <td>{{ $data->harga }}</td>
                     {{-- <td>
                           <img src="{{ asset('store/photo/' . $data->photo) }}" alt="Avatar" class="rounded-circle w-20" />
                     </td> --}}
@@ -51,14 +51,14 @@
                             type="button"
                             class="dropdown-item"
                             data-bs-toggle="modal"
-                            data-bs-target="#exLargeModalEdit{{ $data->id_item }}">
+                            data-bs-target="#exLargeModalEdit{{ $data->id_produk }}">
                             <i class="bx bx-edit-alt me-1"></i> Edit
                         </button>
                         <button
                           type="button"
                           class="dropdown-item"
                           data-bs-toggle="modal"
-                          data-bs-target="#modalScrollableDelete{{ $data->id_item }}">
+                          data-bs-target="#modalScrollableDelete{{ $data->id_produk }}">
                           <i class="bx bx-trash me-1"></i> Delete
                         </button>
                         </div>
@@ -137,8 +137,8 @@
           </form>
           {{-- Edit --}}
           @foreach ($product as $data)
-          <div class="modal fade" id="exLargeModalEdit{{ $data->id_item }}" tabindex="-1" aria-hidden="true">
-              <form method="POST" enctype="multipart/form-data" action="{{ route('product.update', $data->id_item) }}">
+          <div class="modal fade" id="exLargeModalEdit{{ $data->id_produk }}" tabindex="-1" aria-hidden="true">
+              <form method="POST" enctype="multipart/form-data" action="{{ route('product.update', $data->id_produk) }}">
                 @csrf
                 @method('PUT')
             <div class="modal-dialog modal-xl" role="document">
@@ -169,27 +169,27 @@
                         </div>
                       </div>
                       <div class="row g-2 mb-2">
-                        <div class="col mb-0">
+                        {{-- <div class="col mb-0">
                           <label for="dobExLarge" class="form-label">Photo</label>
                           <div class="input-group">
                             <label class="input-group-text" for="inputGroupFile01">Upload</label>
                             <input type="file" name="photo" class="form-control" id="inputGroupFile01" />
                           </div>
-                        </div>
+                        </div> --}}
 
-                      <div class="col mb-0">
+                      {{-- <div class="col mb-0">
                         @if ($data->photo)
                         <img src="{{ asset('store/photo/' . $data->photo) }}" class="mt-2" width="190px" height="175px" alt="profile logo">
                          @else
                              <p>Photo Produk Tidak Ditemukan</p>
                          @endif
-                    </div>
+                    </div> --}}
                       </div>
                       <div class="row">
-                        <div class="col mb-3">
+                        {{-- <div class="col mb-3">
                           <label for="nameExLarge" class="form-label">Deskripsi</label>
                           <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{ $data->description }}</textarea>
-                        </div>
+                        </div> --}}
 
                         {{-- <div class="col mb-0">
                           <label for="emailExLarge" class="form-label">Kategori</label>
@@ -222,7 +222,7 @@
           {{-- delete --}}
           @foreach ($product as $data)
             <!-- Modal -->
-            <div class="modal fade" id="modalScrollableDelete{{ $data->id_item }}" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="modalScrollableDelete{{ $data->id_produk }}" tabindex="-1" aria-hidden="true">
                <div class="modal-dialog modal-dialog-scrollable" role="document">
                  <div class="modal-content">
                    <div class="modal-header">
@@ -242,7 +242,7 @@
                      <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                        Close
                      </button>
-                     <form method="POST" action="{{ route('product.destroy', $data->id_item) }}">
+                     <form method="POST" action="{{ route('product.destroy', $data->id_produk) }}">
                        @csrf
                        @method('DELETE')
                        <button type="submit" class="btn btn-danger">Delete</button>

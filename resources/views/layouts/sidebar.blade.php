@@ -36,7 +36,7 @@
           <div data-i18n="Email">Product</div>
         </a>
       </li>
-      <li class="menu-item {{ request()->is('dashboard*') ? 'active' : '' }}">
+      <li class="menu-item {{ request()->is('product-in*') ? 'active' : '' }}">
         <a
           href="{{ route('dashboard') }}"
           class="menu-link ">
@@ -44,7 +44,7 @@
           <div data-i18n="Email">Product Masuk</div>
         </a>
       </li>
-      <li class="menu-item {{ request()->is('dashboard*') ? 'active' : '' }}">
+      <li class="menu-item {{ request()->is('product-out*') ? 'active' : '' }}">
         <a
           href="{{ route('dashboard') }}"
           class="menu-link ">
