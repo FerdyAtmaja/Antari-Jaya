@@ -38,7 +38,7 @@
       </li>
       <li class="menu-item {{ request()->is('product-in*') ? 'active' : '' }}">
         <a
-          href="{{ route('dashboard') }}"
+          href="{{ route('product-in.index') }}"
           class="menu-link ">
           <i class="menu-icon tf-icons bx bxs-archive-in"></i>
           <div data-i18n="Email">Product Masuk</div>

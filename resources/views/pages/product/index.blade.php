@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('title')
-    Product || Dashboard
+    Product || Product
 @endsection
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">

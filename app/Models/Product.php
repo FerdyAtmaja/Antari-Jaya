@@ -11,4 +11,14 @@ class Product extends Model
     protected $table = 'products';
     protected $primaryKey = 'id_produk';
     protected $guarded = [];
+
+    public function productsIn()
+    {
+        return $this->hasMany(ProductIn::class, 'id_product');
+    }
+
+    public function productsOut()
+    {
+        return $this->hasMany(ProductOut::class, 'id_product');
+    }
 }

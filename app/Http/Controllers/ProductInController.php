@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductIn;
 use Illuminate\Http\Request;
 
 class ProductInController extends Controller
@@ -11,7 +12,8 @@ class ProductInController extends Controller
      */
     public function index()
     {
-        //
+        $product = ProductIn::all();
+        return view('pages.product-in.index', compact('product'));
     }
 
     /**
