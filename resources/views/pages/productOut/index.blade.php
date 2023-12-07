@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('title')
-    Product || Product
+    Product || Product-In
 @endsection
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
@@ -20,24 +20,28 @@
                 <thead>
                   <tr>
                     <th style="width: 5%">No</th>
-                    <th style="width: 35%">Nama Produk</th>
-                    {{-- <th style="width: 20%">Kategori</th> --}}
-                    <th style="width: 30%">Stok</th>
+                    <th style="width: 35%">Tanggal Masuk</th>
+                    <th style="width: 30%">Nama Produk</th>
+                    <th style="width: 30%">Jumlah Masuk</th>
                     <th style="width: 30%">Harga</th>
+                    <th style="width: 30%">Subtotal</th>
                     <th style="width: 10%">Actions</th>
                   </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
                     <?php $no=1; ?>
-                    @foreach ($product as $data)
+                    @foreach ($productIn as $data)
                   <tr>
                     <td>
                       <span class="fw-medium">{{ $no++ }}</span>
                     </td>
-                    <td>{{ $data->nama_produk }}</td>
-                    {{-- <td>{{ $data->category->name }}</td> --}}
-                    <td><span class="badge bg-label-primary me-1">{{ $data->stok }}</span></td>
+                    {{-- <td>{{ SEHARUSE KODE TRANSAKSI }}</td> --}}
+                    <td>{{ $data->tanggal_masuk }}</td>
+                    <td>{{ $data->id_produk }}</td> 
+                    {{-- SEMENTARA <td>{{ $data->product->nama_produk }}</td> --}}
+                    <td>{{ $data->jumlah_masuk }}</span></td>
                     <td>{{ $data->harga }}</td>
+                    <td>{{ $data->subtotal }}</td>
                     {{-- <td>
                           <img src="{{ asset('store/photo/' . $data->photo) }}" alt="Avatar" class="rounded-circle w-20" />
                     </td> --}}
@@ -85,36 +89,32 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col mb-3">
-                          <label for="nameExLarge" class="form-label">Nama Produk</label>
-                          <input type="text" name="name" id="nameExLarge" class="form-control" placeholder="Masukan Nama Produk" />
-                        </div>
+                      <div class="col mb-0">
+                        <label for="emailExLarge" class="form-label">Nama Produk</label>
+                        <select name="id_produk" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                          <option selected>--- Pilih Produk ---</option>
+                          @foreach ($product as $data)
+                          <option value="{{ $data->id_produk }}">{{ $data->name }}</option>
+                          @endforeach
+                        </select>
                       </div>
-                      <div class="row g-2 mb-2">
-                        <div class="col mb-0">
-                          <label for="dobExLarge" class="form-label">Stok</label>
-                          <input type="text" name="stock" id="nameExLarge" class="form-control" placeholder="Masukan Stok Produk"/>
-                        </div>
+                    </div>
+                    <div class="row g-2 mb-2">
+                      <div class="col mb-0">
+                        <label for="emailExLarge" class="form-label">Harga</label>
+                        <input type="text" name="price" id="nameExLarge" class="form-control" placeholder="Masukan Harga Produk" />
                       </div>
-                      <div class="row g-2 mb-2">
-                        <div class="col mb-0">
-                          <label for="emailExLarge" class="form-label">Harga</label>
-                          <input type="text" name="price" id="nameExLarge" class="form-control" placeholder="Masukan Harga Produk" />
-                        </div>
-                        {{-- <div class="col mb-0">
-                          <label for="dobExLarge" class="form-label">Photo</label>
-                          <div class="input-group">
-                            <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                            <input type="file" name="photo" class="form-control" id="inputGroupFile01" />
-                          </div>
-                        </div> --}}
+                    </div>
+                    <div class="row g-2 mb-2">
+                      <div class="col mb-0">
+                        <label for="emailExLarge" class="form-label">Jumlah Masuk</label>
+                        <input type="text" name="qty" id="nameExLarge" class="form-control" placeholder="Masukan Harga Produk" />
                       </div>
-                      {{-- <div class="row">
-                        <div class="col mb-3">
-                          <label for="nameExLarge" class="form-label">Deskripsi</label>
-                          <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                      </div> --}}
+                      <div class="col mb-0">
+                        <label for="emailExLarge" class="form-label">Subtotal</label>
+                        <input type="text" name="subtotal" id="nameExLarge" class="form-control" placeholder="Masukan Harga Produk" />
+                      </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -127,7 +127,7 @@
           </div>
           </form>
           {{-- Edit --}}
-          @foreach ($product as $data)
+          @foreach ($productIn as $data)
           <div class="modal fade" id="exLargeModalEdit{{ $data->id_produk }}" tabindex="-1" aria-hidden="true">
               <form method="POST" enctype="multipart/form-data" action="{{ route('product.update', $data->id_produk) }}">
                 @csrf
@@ -144,59 +144,21 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col mb-3">
-                          <label for="nameExLarge" class="form-label">Nama Produk</label>
-                          <input type="text" name="name" id="nameExLarge" class="form-control" placeholder="Masukan Nama Produk" value="{{ $data->name }}" />
-                        </div>
+                      <div class="col mb-3">
+                        <label for="nameExLarge" class="form-label">Nama Produk</label>
+                        <input type="text" name="name" id="nameExLarge" class="form-control" placeholder="Masukan Nama Produk" value="{{ $data->name }}" />
                       </div>
-                      <div class="row g-2 mb-2">
-                        <div class="col mb-0">
-                          <label for="nameExLarge" class="form-label">Stok</label>
-                          <input type="number" name="stock" id="nameExLarge" class="form-control" placeholder="Masukan Stok Produk" value="{{ $data->stock}}"/>
-                        </div>
-                        <div class="col mb-0">
-                          <label for="nameExLarge" class="form-label">Harga</label>
-                          <input type="number" name="price" id="nameExLarge" class="form-control" placeholder="Masukan Harga Produk" value="{{ $data->price }}"/>
-                        </div>
+                    </div>
+                    <div class="row g-2 mb-2">
+                      <div class="col mb-0">
+                        <label for="nameExLarge" class="form-label">Stok</label>
+                        <input type="number" name="stock" id="nameExLarge" class="form-control" placeholder="Masukan Stok Produk" value="{{ $data->stock}}"/>
                       </div>
-                      <div class="row g-2 mb-2">
-                        {{-- <div class="col mb-0">
-                          <label for="dobExLarge" class="form-label">Photo</label>
-                          <div class="input-group">
-                            <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                            <input type="file" name="photo" class="form-control" id="inputGroupFile01" />
-                          </div>
-                        </div> --}}
-
-                      {{-- <div class="col mb-0">
-                        @if ($data->photo)
-                        <img src="{{ asset('store/photo/' . $data->photo) }}" class="mt-2" width="190px" height="175px" alt="profile logo">
-                         @else
-                             <p>Photo Produk Tidak Ditemukan</p>
-                         @endif
-                    </div> --}}
+                      <div class="col mb-0">
+                        <label for="nameExLarge" class="form-label">Harga</label>
+                        <input type="number" name="price" id="nameExLarge" class="form-control" placeholder="Masukan Harga Produk" value="{{ $data->price }}"/>
                       </div>
-                      <div class="row">
-                        {{-- <div class="col mb-3">
-                          <label for="nameExLarge" class="form-label">Deskripsi</label>
-                          <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{ $data->description }}</textarea>
-                        </div> --}}
-
-                        {{-- <div class="col mb-0">
-                          <label for="emailExLarge" class="form-label">Kategori</label>
-                          <select name="id_category" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                            <option selected>--- Pilih Kategori ---</option>
-                              @foreach ($category as $data)
-                                <option value="{{ $data->id_category }}"
-                                    @if (old('id_category', $data->id_category) == $data->id_category)
-                                        selected
-                                    @endif>
-                                    {{ $data->name }}
-                                </option>
-                              @endforeach
-                          </select>
-                        </div> --}}
-                      </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -211,13 +173,13 @@
           @endforeach
 
           {{-- delete --}}
-          @foreach ($product as $data)
+          @foreach ($productIn as $data)
             <!-- Modal -->
-            <div class="modal fade" id="modalScrollableDelete{{ $data->id_produk }}" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="modalScrollableDelete{{ $data->kode_transaksi_masuk }}" tabindex="-1" aria-hidden="true">
                <div class="modal-dialog modal-dialog-scrollable" role="document">
                  <div class="modal-content">
                    <div class="modal-header">
-                     <h5 class="modal-title" id="modalScrollableTitle">Hapus Produk {{ $data->name }}</h5>
+                     <h5 class="modal-title" id="modalScrollableTitle">Hapus Transaksi {{ $data->kode_transaksi_masuk }}</h5>
                      <button
                        type="button"
                        class="btn-close"
@@ -226,14 +188,14 @@
                    </div>
                    <div class="modal-body">
                      <p>
-                       Apakah anda ingin menghapus Produk ini?
+                       Apakah anda ingin menghapus Transaksi ini?
                      </p>
                    </div>
                    <div class="modal-footer">
                      <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                        Close
                      </button>
-                     <form method="POST" action="{{ route('product.destroy', $data->id_produk) }}">
+                     <form method="POST" action="{{ route('productIn.destroy', $data->kode_transaksi_masuk) }}">
                        @csrf
                        @method('DELETE')
                        <button type="submit" class="btn btn-danger">Delete</button>

@@ -20,7 +20,7 @@
         <span class="menu-header-text">Menu Admin</span>
       </li>
       <!-- Apps -->
-      <li class="menu-item {{ request()->is('dashboard*') ? 'active' : '' }}">
+      <li class="menu-item {{ request()->is('dashboard') ? 'active' : '' }}">
         <a
           href="{{ route('dashboard') }}"
           class="menu-link ">
@@ -28,7 +28,7 @@
           <div data-i18n="Email">Dashboard</div>
         </a>
       </li>
-      <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+      <li class="menu-item {{ request()->is('product') ? 'active' : '' }}">
         <a
           href="{{ route('product.index') }}"
           class="menu-link ">
@@ -36,23 +36,23 @@
           <div data-i18n="Email">Product</div>
         </a>
       </li>
-      <li class="menu-item {{ request()->is('product-in*') ? 'active' : '' }}">
+      <li class="menu-item {{ request()->is('productIn') ? 'active' : '' }}">
         <a
-          href="{{ route('product-in.index') }}"
+          href="{{ route('productIn.index') }}"
           class="menu-link ">
           <i class="menu-icon tf-icons bx bxs-archive-in"></i>
           <div data-i18n="Email">Product Masuk</div>
         </a>
       </li>
-      <li class="menu-item {{ request()->is('product-out*') ? 'active' : '' }}">
+      <li class="menu-item {{ request()->is('productOut') ? 'active' : '' }}">
         <a
-          href="{{ route('dashboard') }}"
+          href="{{ route('productOut.index') }}"
           class="menu-link ">
           <i class="menu-icon tf-icons bx bxs-archive-out"></i>
           <div data-i18n="Email">Product Keluar</div>
         </a>
       </li>
-      <li class="menu-item {{ request()->is('report*') ? 'active' : '' }}">
+      <li class="menu-item {{ request()->is('report') ? 'active' : '' }}">
         <a
           href="{{ route('dashboard') }}"
           class="menu-link ">

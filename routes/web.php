@@ -26,8 +26,8 @@ use App\Http\Controllers\ProductOutController;
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('product', ProductController::class);
-Route::resource('product-in', ProductInController::class);
-Route::resource('product-out', ProductOutController::class);
+Route::resource('productIn', ProductInController::class);
+Route::resource('productOut', ProductOutController::class);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

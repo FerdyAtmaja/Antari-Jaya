@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductOut extends Model
 {
     use HasFactory;
-    protected $table = 'product_keluar';
+    protected $table = 'produk_keluar';
     protected $primaryKey = 'kode_transaksi_keluar';
     protected $guarded = [];
 

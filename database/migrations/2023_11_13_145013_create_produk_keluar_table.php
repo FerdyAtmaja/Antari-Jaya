@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id('id_produk');
-            $table->String('nama_produk');
+        Schema::create('produk_keluar', function (Blueprint $table) {
+            $table->id('kode_transaksi_keluar');
+            $table->dateTime('tanggal_keluar');
+            $table->unsignedBigInteger('id_produk');
+            $table->integer('jumlah_keluar');
             $table->decimal('harga');
-            // $table->String('kategori');
-            $table->integer('stok');
+            $table->decimal('subtotal');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('produk_keluar');
     }
 };

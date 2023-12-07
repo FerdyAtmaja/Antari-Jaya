@@ -14,7 +14,7 @@ class ProductTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $rolesRecords = [
+        $productRecords = [
             [
                 'id_produk' => 1,
                 'nama_produk' => 'Mizone',
@@ -40,6 +40,6 @@ class ProductTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ]
         ];
-        Product::insert($rolesRecords);
+        Product::insert($productRecords);
     }
 }

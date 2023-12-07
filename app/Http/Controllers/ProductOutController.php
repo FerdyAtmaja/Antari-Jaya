@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\ProductIn;
 use Illuminate\Http\Request;
 
 class ProductOutController extends Controller
@@ -11,7 +13,9 @@ class ProductOutController extends Controller
      */
     public function index()
     {
-        //
+        $productIn = ProductIn::all();
+        $product = Product::all();
+        return view('pages.productOut.index', compact('productIn' , 'product'));
     }
 
     /**
