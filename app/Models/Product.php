@@ -14,11 +14,11 @@ class Product extends Model
 
     public function productsIn()
     {
-        return $this->hasMany(ProductIn::class, 'id_product');
+        return $this->hasMany(ProductIn::class, 'id_produk');
     }
 
     public function productsOut()
     {
-        return $this->hasMany(ProductOut::class, 'id_product');
+        return $this->hasMany(ProductOut::class, 'id_produk');
     }
 }

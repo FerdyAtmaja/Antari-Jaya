@@ -12,7 +12,7 @@
                 class="btn btn-primary"
                 data-bs-toggle="modal"
                 data-bs-target="#exLargeModal">
-                + Tambah Produk
+                + Tambah Transaksi Masuk
               </button>
             </h5>
             <div class="table-responsive text-nowrap">
@@ -20,13 +20,13 @@
                 <thead>
                   <tr>
                     <th style="width: 5%">No</th>
-                    <th style="width: 35%">Tanggal Masuk</th>
-                    <th style="width: 30%">Nama Produk</th>
-                    <th style="width: 30%">Jumlah Masuk</th>
-                    <th style="width: 30%">Harga</th>
-                    <th style="width: 30%">Subtotal</th>
+                    <th style="width: 15%">Tanggal Masuk</th>
+                    <th style="width: 25%">Nama Produk</th>
+                    <th style="width: 15%">Jumlah Masuk</th>
+                    <th style="width: 15%">Harga</th>
+                    <th style="width: 15%">Subtotal</th>
                     <th style="width: 10%">Actions</th>
-                  </tr>
+                </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
                     <?php $no=1; ?>
@@ -37,8 +37,8 @@
                     </td>
                     {{-- <td>{{ SEHARUSE KODE TRANSAKSI }}</td> --}}
                     <td>{{ $data->tanggal_masuk }}</td>
-                    <td>{{ $data->id_produk }}</td> 
-                    {{-- SEMENTARA <td>{{ $data->product->nama_produk }}</td> --}}
+                    {{-- <td>{{ $data->id_produk }}</td>  --}}
+                    <td>{{ $data->products->nama_produk }}</td>
                     <td>{{ $data->jumlah_masuk }}</span></td>
                     <td>{{ $data->harga }}</td>
                     <td>{{ $data->subtotal }}</td>
@@ -55,14 +55,14 @@
                             type="button"
                             class="dropdown-item"
                             data-bs-toggle="modal"
-                            data-bs-target="#exLargeModalEdit{{ $data->id_produk }}">
+                            data-bs-target="#exLargeModalEdit{{ $data->kode_transaksi_masuk }}">
                             <i class="bx bx-edit-alt me-1"></i> Edit
                         </button>
                         <button
                           type="button"
                           class="dropdown-item"
                           data-bs-toggle="modal"
-                          data-bs-target="#modalScrollableDelete{{ $data->id_produk }}">
+                          data-bs-target="#modalScrollableDelete{{ $data->kode_transaksi_masuk }}">
                           <i class="bx bx-trash me-1"></i> Delete
                         </button>
                         </div>
@@ -74,6 +74,8 @@
               </table>
             </div>
           </div>
+
+          <!-- Add Transaction Modal -->
           <form action="{{ route('productIn.store') }}" method="post" enctype="multipart/form-data">
             @csrf
           <div class="modal fade" id="exLargeModal" tabindex="-1" aria-hidden="true">
@@ -94,7 +96,7 @@
                         <select name="id_produk" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
                           <option selected>--- Pilih Produk ---</option>
                           @foreach ($product as $data)
-                          <option value="{{ $data->id_produk }}">{{ $data->name }}</option>
+                          <option value="{{ $data->id_produk }}">{{ $data->nama_produk }}</option>
                           @endforeach
                         </select>
                       </div>
@@ -128,14 +130,14 @@
           </form>
           {{-- Edit --}}
           @foreach ($productIn as $data)
-          <div class="modal fade" id="exLargeModalEdit{{ $data->id_produk }}" tabindex="-1" aria-hidden="true">
-              <form method="POST" enctype="multipart/form-data" action="{{ route('productIn.update', $data->id_produk) }}">
+          <div class="modal fade" id="exLargeModalEdit{{ $data->kode_transaksi_masuk }}" tabindex="-1" aria-hidden="true">
+              <form method="POST" enctype="multipart/form-data" action="{{ route('productIn.update', $data->kode_transaksi_masuk) }}">
                 @csrf
                 @method('PUT')
             <div class="modal-dialog modal-xl" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel4">Edit Produk</h5>
+                  <h5 class="modal-title" id="exampleModalLabel4">Edit Data Transaksi</h5>
                   <button
                     type="button"
                     class="btn-close"
@@ -149,7 +151,7 @@
                       <select name="id_produk" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
                         <option selected>--- Pilih Produk ---</option>
                         @foreach ($product as $data)
-                        <option value="{{ $data->id_produk }}">{{ $data->name }}</option>
+                        <option value="{{ $data->id_produk }}">{{ $data->nama_produk }}</option>
                         @endforeach
                       </select>
                     </div>

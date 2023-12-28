@@ -38,39 +38,38 @@ class ProductInController extends Controller
         $data = $request->all();
 
         $rules = [
-            'name' => 'required',
-            // 'id_category' => 'required|exists:categories,id_category',
-            // 'description' => 'required',
+            'id_produk' => 'required|exists:produk,id_produk',
+            'qty' => 'required|numeric',
             'price' => 'required|numeric',
-            'stock' => 'required|numeric',
-            // 'photo' => 'image|mimes:jpeg,png,jpg,gif',
+            'subtotal' => 'required|numeric',
         ];
 
         $customMessages = [
-            'name.required' => 'Nama Produk tidak boleh kosong!!!',
-            // 'id_category.required' => 'Silakan pilih kategori.',
-            // 'id_category.exists' => 'Kategori yang dipilih tidak ada.',
-            // 'description.required' => 'Deskripsi produk tidak boleh kosong!!!',
+            'id_produk.required' => 'Silakan pilih produk.',
+            'id_produk.exists' => 'Produk yang dipilih tidak ada.',
+            'qty.required' => 'Jumlah masuk tidak boleh kosong!!!',
+            'qty.numeric' => 'Jumlah masuk tidak sesuai format (harus berupa angka)!!!',
             'price.required' => 'Harga produk tidak boleh kosong!!!',
             'price.numeric' => 'Harga produk tidak sesuai format (harus berupa angka)!!!',
-            'stock.required' => 'Stok produk tidak boleh kosong!!!',
-            'stock.numeric' => 'Stok produk tidak sesuai format (harus berupa angka)!!!',
-            // 'photo.image' => 'Photo harus berupa gambar.',
-            // 'photo.mimes' => 'Format gambar tidak valid. Hanya diperbolehkan file dengan ekstensi jpeg, png, jpg, dan gif.',
+            'subtotal.required' => 'Subtotal tidak boleh kosong!!!',
+            'subtotal.numeric' => 'Subtotal tidak sesuai format (harus berupa angka)!!!',
         ];
 
         $this->validate($request, $rules, $customMessages);
 
+        // $data = $request->all();
+        // $productIn = new ProductIn();
+        // $total_harga = 0;
+        // $total_harga = $productIn->harga * $productIn->jumlah_masuk;
+
         $data = $request->all();
-        $productIn = new ProductIn();
-        $total_harga = 0;
-        $total_harga = $productIn->harga * $productIn->jumlah_masuk;
         try {
+            $productIn = new ProductIn();
             $productIn->tanggal_masuk = Carbon::now();
-            $productIn->id_produk  = $data['id_product'];
+            $productIn->id_produk  = $data['id_produk'];
             $productIn->jumlah_masuk = $data['qty'];
             $productIn->harga = $data['price'];
-            $productIn->subtotal  = $total_harga;
+            $productIn->subtotal  = $data['subtotal'];
 
             $productIn->save();
 
@@ -120,39 +119,31 @@ class ProductInController extends Controller
         $data = $request->all();
 
         $rules = [
-            'name' => 'required',
-            // 'id_category' => 'required|exists:categories,id_category',
-            // 'description' => 'required',
+            'id_produk' => 'required|exists:produk,id_produk',
+            'qty' => 'required|numeric',
             'price' => 'required|numeric',
-            'stock' => 'required|numeric',
-            // 'photo' => 'image|mimes:jpeg,png,jpg,gif',
+            'subtotal' => 'required|numeric',
         ];
 
         $customMessages = [
-            'name.required' => 'Nama Produk tidak boleh kosong!!!',
-            // 'id_category.required' => 'Silakan pilih kategori.',
-            // 'id_category.exists' => 'Kategori yang dipilih tidak ada.',
-            // 'description.required' => 'Deskripsi produk tidak boleh kosong!!!',
+            'id_produk.required' => 'Silakan pilih produk.',
+            'id_produk.exists' => 'Produk yang dipilih tidak ada.',
+            'qty.required' => 'Jumlah masuk tidak boleh kosong!!!',
+            'qty.numeric' => 'Jumlah masuk tidak sesuai format (harus berupa angka)!!!',
             'price.required' => 'Harga produk tidak boleh kosong!!!',
             'price.numeric' => 'Harga produk tidak sesuai format (harus berupa angka)!!!',
-            'stock.required' => 'Stok produk tidak boleh kosong!!!',
-            'stock.numeric' => 'Stok produk tidak sesuai format (harus berupa angka)!!!',
-            // 'photo.image' => 'Photo harus berupa gambar.',
-            // 'photo.mimes' => 'Format gambar tidak valid. Hanya diperbolehkan file dengan ekstensi jpeg, png, jpg, dan gif.',
+            'subtotal.required' => 'Subtotal tidak boleh kosong!!!',
+            'subtotal.numeric' => 'Subtotal tidak sesuai format (harus berupa angka)!!!',
         ];
 
         $this->validate($request, $rules, $customMessages);
 
         try {
-            $productIn->nama_produk  = $data['name'];
-            // $product->id_category = $data['id_category'];
-            // $product->description = $data['description'];
+            $productIn->id_produk  = $data['id_produk'];
+            $productIn->jumlah_masuk = $data['qty'];
             $productIn->harga = $data['price'];
-            $productIn->stok = $data['stock'];
-            // if (isset($imageName)) {
-            //     // Save the image name only if an image was uploaded
-            //     $product->photo = $imageName;
-            // }
+            $productIn->subtotal  = $data['subtotal'];
+            
             $productIn->save();
 
             Session::flash('success_message_create', 'Data Produk berhasil diperbarui');
@@ -193,7 +184,7 @@ class ProductInController extends Controller
 
             return redirect()->route('productIn.index')->with('error_message_delete', $errorMessage);
         } catch (ModelNotFoundException $e) {
-            // jika id Guru tidak ditemukan redirect error message
+            // jika id tidak ditemukan redirect error message
             return redirect()->route('productIn.index')->with('error_message_not_found', 'Data produk tidak ditemukan');
         }
     }

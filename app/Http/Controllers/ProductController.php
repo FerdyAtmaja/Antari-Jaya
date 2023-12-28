@@ -38,54 +38,27 @@ class ProductController extends Controller
 
         $rules = [
             'name' => 'required',
-            // 'id_category' => 'required|exists:categories,id_category',
-            // 'description' => 'required',
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
-            // 'photo' => 'image|mimes:jpeg,png,jpg,gif',
         ];
 
         $customMessages = [
             'name.required' => 'Nama Produk tidak boleh kosong!!!',
-            // 'id_category.required' => 'Silakan pilih kategori.',
-            // 'id_category.exists' => 'Kategori yang dipilih tidak ada.',
-            // 'description.required' => 'Deskripsi produk tidak boleh kosong!!!',
             'price.required' => 'Harga produk tidak boleh kosong!!!',
             'price.numeric' => 'Harga produk tidak sesuai format (harus berupa angka)!!!',
             'stock.required' => 'Stok produk tidak boleh kosong!!!',
             'stock.numeric' => 'Stok produk tidak sesuai format (harus berupa angka)!!!',
-            // 'photo.image' => 'Photo harus berupa gambar.',
-            // 'photo.mimes' => 'Format gambar tidak valid. Hanya diperbolehkan file dengan ekstensi jpeg, png, jpg, dan gif.',
         ];
 
         $this->validate($request, $rules, $customMessages);
-
-        // // upload staff profile photo
-        // if ($request->hasFile('photo')) {
-        //     $img_tmp = $request->file('photo');
-        //     if ($img_tmp->isValid()) {
-        //         // get image extension
-        //         $extension = $img_tmp->getClientOriginalExtension();
-        //         // generate new image name
-        //         $imageName = rand(111, 99999) . '.' . $extension;
-        //         $imagePath = 'store/photo/' . $imageName;
-        //         // upload image
-        //         Image::make($img_tmp)->save(public_path($imagePath));
-        //     }
-        // }
 
         $data = $request->all();
         try {
             $product = new Product();
             $product->nama_produk  = $data['name'];
-            // $product->id_category = $data['id_category'];
-            // $product->description = $data['description'];
             $product->harga = $data['price'];
             $product->stok = $data['stock'];
-            // if (isset($imageName)) {
-            //     // Save the image name only if an image was uploaded
-            //     $product->photo = $imageName;
-            // };
+
             $product->save();
 
             Session::flash('success_message_create', 'Data Produk berhasil disimpan');
@@ -135,60 +108,25 @@ class ProductController extends Controller
 
         $rules = [
             'name' => 'required',
-            // 'id_category' => 'required|exists:categories,id_category',
-            // 'description' => 'required',
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
-            // 'photo' => 'image|mimes:jpeg,png,jpg,gif',
         ];
 
         $customMessages = [
             'name.required' => 'Nama Produk tidak boleh kosong!!!',
-            // 'id_category.required' => 'Silakan pilih kategori.',
-            // 'id_category.exists' => 'Kategori yang dipilih tidak ada.',
-            // 'description.required' => 'Deskripsi produk tidak boleh kosong!!!',
             'price.required' => 'Harga produk tidak boleh kosong!!!',
             'price.numeric' => 'Harga produk tidak sesuai format (harus berupa angka)!!!',
             'stock.required' => 'Stok produk tidak boleh kosong!!!',
             'stock.numeric' => 'Stok produk tidak sesuai format (harus berupa angka)!!!',
-            // 'photo.image' => 'Photo harus berupa gambar.',
-            // 'photo.mimes' => 'Format gambar tidak valid. Hanya diperbolehkan file dengan ekstensi jpeg, png, jpg, dan gif.',
         ];
 
         $this->validate($request, $rules, $customMessages);
 
-        // update product photo
-        // if ($request->hasFile('photo')) {
-        //     $img_tmp = $request->file('photo');
-        //     if ($img_tmp->isValid()) {
-        //         // Get image extension
-        //         $extension = $img_tmp->getClientOriginalExtension();
-        //         // Generate new image name
-        //         $imageName = rand(111, 99999) . '.' . $extension;
-        //         $imagePath = 'store/photo/' . $imageName;
-        //         // Upload image
-        //         Image::make($img_tmp)->save(public_path($imagePath));
-
-        //         // Delete old image if it exists
-        //         if ($product->photo && File::exists('store/photo/' . $product->photo)) {
-        //             File::delete('store/photo/' . $product->photo);
-        //         }
-
-        //         // Save the new image name to the database
-        //         $product->photo = $imageName;
-        //     }
-        // }
-
         try {
             $product->nama_produk  = $data['name'];
-            // $product->id_category = $data['id_category'];
-            // $product->description = $data['description'];
             $product->harga = $data['price'];
             $product->stok = $data['stock'];
-            // if (isset($imageName)) {
-            //     // Save the image name only if an image was uploaded
-            //     $product->photo = $imageName;
-            // }
+
             $product->save();
 
             Session::flash('success_message_create', 'Data Produk berhasil diperbarui');

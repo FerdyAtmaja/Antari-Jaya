@@ -70,6 +70,8 @@
               </table>
             </div>
           </div>
+
+          <!-- Add Product Modal -->
           <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
             @csrf
           <div class="modal fade" id="exLargeModal" tabindex="-1" aria-hidden="true">
@@ -101,20 +103,7 @@
                           <label for="emailExLarge" class="form-label">Harga</label>
                           <input type="text" name="price" id="nameExLarge" class="form-control" placeholder="Masukan Harga Produk" />
                         </div>
-                        {{-- <div class="col mb-0">
-                          <label for="dobExLarge" class="form-label">Photo</label>
-                          <div class="input-group">
-                            <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                            <input type="file" name="photo" class="form-control" id="inputGroupFile01" />
-                          </div>
-                        </div> --}}
                       </div>
-                      {{-- <div class="row">
-                        <div class="col mb-3">
-                          <label for="nameExLarge" class="form-label">Deskripsi</label>
-                          <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                      </div> --}}
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -160,42 +149,8 @@
                         </div>
                       </div>
                       <div class="row g-2 mb-2">
-                        {{-- <div class="col mb-0">
-                          <label for="dobExLarge" class="form-label">Photo</label>
-                          <div class="input-group">
-                            <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                            <input type="file" name="photo" class="form-control" id="inputGroupFile01" />
-                          </div>
-                        </div> --}}
-
-                      {{-- <div class="col mb-0">
-                        @if ($data->photo)
-                        <img src="{{ asset('store/photo/' . $data->photo) }}" class="mt-2" width="190px" height="175px" alt="profile logo">
-                         @else
-                             <p>Photo Produk Tidak Ditemukan</p>
-                         @endif
-                    </div> --}}
                       </div>
                       <div class="row">
-                        {{-- <div class="col mb-3">
-                          <label for="nameExLarge" class="form-label">Deskripsi</label>
-                          <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{ $data->description }}</textarea>
-                        </div> --}}
-
-                        {{-- <div class="col mb-0">
-                          <label for="emailExLarge" class="form-label">Kategori</label>
-                          <select name="id_category" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                            <option selected>--- Pilih Kategori ---</option>
-                              @foreach ($category as $data)
-                                <option value="{{ $data->id_category }}"
-                                    @if (old('id_category', $data->id_category) == $data->id_category)
-                                        selected
-                                    @endif>
-                                    {{ $data->name }}
-                                </option>
-                              @endforeach
-                          </select>
-                        </div> --}}
                       </div>
                 </div>
                 <div class="modal-footer">
