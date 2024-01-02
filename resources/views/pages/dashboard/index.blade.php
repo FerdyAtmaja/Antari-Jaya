@@ -25,7 +25,7 @@ use App\Models\Order;
                     </div>
                   </div>
                     <span class="fw-medium d-block mb-1">Pendapatan</span>
-                      <h3 class="card-title mb-2"></h3>
+                      <h3 class="card-title mb-2">IDR 12,345</h3>
                       <small class="text-success fw-medium me-1"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
                         <span class="text-nowrap">dari bulan lalu</span>
                 </div>

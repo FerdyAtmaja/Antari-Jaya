@@ -54,7 +54,7 @@
       </li>
       <li class="menu-item {{ request()->is('report') ? 'active' : '' }}">
         <a
-          href="{{ route('dashboard') }}"
+          href="{{ route('report.index') }}"
           class="menu-link ">
           <i class="menu-icon tf-icons bx bx-trending-up"></i>
           {{-- <i class="menu-icon tf-icons bx bxs-badge-dollar"></i>

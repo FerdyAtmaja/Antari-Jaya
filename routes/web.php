@@ -6,7 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductInController;
 use App\Http\Controllers\ProductOutController;
-
+use App\Http\Controllers\ReportingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +28,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::resource('product', ProductController::class);
 Route::resource('productIn', ProductInController::class);
 Route::resource('productOut', ProductOutController::class);
+Route::resource('report', ReportingController::class);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
